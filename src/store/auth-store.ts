@@ -1,36 +1,61 @@
 import { create } from "zustand";
 import type { User } from "@/types";
-import { authApi } from "@/lib/api/auth";
+
+const MOCK_USER: User = {
+  id: "mock-user-1",
+  name: "John Doe",
+  email: "john@studify.app",
+  avatar: undefined,
+  createdAt: new Date().toISOString(),
+};
+
+const MOCK_TOKEN = "mock-jwt-token-12345";
+
+const MOCK_CREDENTIALS = {
+  email: "john@studify.app",
+  password: "password123",
+};
 
 interface AuthState {
   user: User | null;
   token: string | null;
-  isLoading: boolean;
   isAuthenticated: boolean;
+  isLoading: boolean;
 
-  setAuth: (user: User, token: string) => void;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
   loadUser: () => Promise<void>;
 }
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+function simulateDelay(ms = 1500): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   token: null,
-  isLoading: false,
   isAuthenticated: false,
-
-  setAuth: (user, token) => {
-    localStorage.setItem("token", token);
-    set({ user, token, isAuthenticated: true });
-  },
+  isLoading: false,
 
   login: async (email, password) => {
     set({ isLoading: true });
     try {
-      const { user, token } = await authApi.login({ email, password });
-      get().setAuth(user, token);
+      await simulateDelay();
+
+      if (
+        email !== MOCK_CREDENTIALS.email ||
+        password !== MOCK_CREDENTIALS.password
+      ) {
+        throw new Error("Invalid email or password. Try john@studify.app / password123");
+      }
+
+      localStorage.setItem("token", MOCK_TOKEN);
+      set({
+        user: MOCK_USER,
+        token: MOCK_TOKEN,
+        isAuthenticated: true,
+      });
     } finally {
       set({ isLoading: false });
     }
@@ -39,8 +64,22 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   register: async (name, email, password) => {
     set({ isLoading: true });
     try {
-      const { user, token } = await authApi.register({ name, email, password });
-      get().setAuth(user, token);
+      await simulateDelay();
+
+      const newUser: User = {
+        id: "mock-user-" + Date.now(),
+        name,
+        email,
+        avatar: undefined,
+        createdAt: new Date().toISOString(),
+      };
+
+      localStorage.setItem("token", MOCK_TOKEN);
+      set({
+        user: newUser,
+        token: MOCK_TOKEN,
+        isAuthenticated: true,
+      });
     } finally {
       set({ isLoading: false });
     }
@@ -57,8 +96,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     set({ isLoading: true });
     try {
-      const user = await authApi.me();
-      set({ user, token, isAuthenticated: true });
+      await simulateDelay(500);
+      set({ user: MOCK_USER, token: MOCK_TOKEN, isAuthenticated: true });
     } catch {
       localStorage.removeItem("token");
     } finally {
