@@ -1,0 +1,51 @@
+import type { LucideIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+
+interface EmptyTaskStateProps {
+  icon?: LucideIcon
+  title: string
+  description?: string
+  action?: {
+    label: string
+    onClick: () => void
+  }
+  className?: string
+}
+
+export function EmptyTaskState({
+  icon: Icon,
+  title,
+  description,
+  action,
+  className,
+}: EmptyTaskStateProps) {
+  return (
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center",
+        className
+      )}
+    >
+      {Icon && (
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+          <Icon className="h-6 w-6 text-muted-foreground" />
+        </div>
+      )}
+      <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+      {description && (
+        <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+      )}
+      {action && (
+        <Button
+          variant="outline"
+          size="sm"
+          className="mt-4"
+          onClick={action.onClick}
+        >
+          {action.label}
+        </Button>
+      )}
+    </div>
+  )
+}

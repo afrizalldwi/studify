@@ -6,6 +6,7 @@ import { SidebarItem } from "@/components/shared/sidebar-item"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   LayoutDashboard,
+  ListTodo,
   CheckSquare,
   StickyNote,
   Calendar,
@@ -18,7 +19,8 @@ import {
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/dashboard/sessions", label: "Tasks", icon: CheckSquare },
+  { href: "/dashboard/tasks", label: "Tasks", icon: ListTodo },
+  { href: "/dashboard/sessions", label: "Study Sessions", icon: CheckSquare },
   { href: "/dashboard/notes", label: "Notes", icon: StickyNote },
   { href: "/dashboard/calendar", label: "Calendar", icon: Calendar },
   { href: "/dashboard/ai-study", label: "AI Study", icon: Brain },
