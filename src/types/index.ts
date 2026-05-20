@@ -86,3 +86,28 @@ export interface ApiError {
   message: string;
   status: number;
 }
+
+// Calendar Event Payloads
+export interface CreateEventPayload {
+  title: string;
+  description?: string;
+  category: "Assignment" | "Study Session" | "Exam" | "Meeting" | "Personal";
+  startDate: string;
+  endDate: string;
+  priority: "Low" | "Medium" | "High";
+  location?: string;
+  reminder?: boolean;
+  completed?: boolean;
+}
+
+export interface UpdateEventPayload {
+  title?: string;
+  description?: string;
+  category?: "Assignment" | "Study Session" | "Exam" | "Meeting" | "Personal";
+  startDate?: string;
+  endDate?: string;
+  priority?: "Low" | "Medium" | "High";
+  location?: string;
+  reminder?: boolean;
+  completed?: boolean;
+}

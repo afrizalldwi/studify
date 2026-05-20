@@ -49,12 +49,12 @@ export default function DashboardLayout({
 
       <div
         className={cn(
-          "transition-all duration-300",
+          "transition-all duration-300 flex min-h-screen flex-col",
           sidebarCollapsed ? "md:ml-[72px]" : "md:ml-64"
         )}
       >
         <Navbar onMenuClick={() => setMobileOpen(true)} />
-        <ContentWrapper>{children}</ContentWrapper>
+        <ContentWrapper className="flex-1 min-h-0">{children}</ContentWrapper>
       </div>
     </div>
   )

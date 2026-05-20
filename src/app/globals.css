@@ -151,3 +151,202 @@
   scrollbar-width: thin;
   scrollbar-color: hsl(var(--border)) transparent;
 }
+
+/* FullCalendar Custom Styles */
+.calendar-wrapper {
+  --fc-border-color: hsl(var(--border));
+  --fc-button-text-color: hsl(var(--foreground));
+  --fc-button-bg-color: hsl(var(--secondary));
+  --fc-button-border-color: hsl(var(--border));
+  --fc-button-hover-bg-color: hsl(var(--accent));
+  --fc-button-hover-border-color: hsl(var(--border));
+  --fc-button-active-bg-color: hsl(var(--primary));
+  --fc-button-active-border-color: hsl(var(--primary));
+  --fc-today-bg-color: hsl(var(--primary) / 0.08);
+  --fc-neutral-bg-color: hsl(var(--background));
+  --fc-page-bg-color: hsl(var(--background));
+  --fc-list-event-hover-bg-color: hsl(var(--accent));
+  --fc-event-bg-color: var(--primary);
+  --fc-event-border-color: transparent;
+  --fc-event-text-color: #fff;
+  --fc-more-link-bg-color: hsl(var(--accent));
+  --fc-more-link-text-color: hsl(var(--foreground));
+
+  /* Event Category Colors */
+  --fc-event-assignment-bg: #3b82f6;
+  --fc-event-study-session-bg: #10b981;
+  --fc-event-exam-bg: #f43f5e;
+  --fc-event-meeting-bg: #8b5cf6;
+  --fc-event-personal-bg: #6b7280;
+}
+
+.calendar-wrapper .fc {
+  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+.calendar-wrapper .fc .fc-toolbar-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.calendar-wrapper .fc .fc-col-header-cell {
+  padding: 8px 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: hsl(var(--muted-foreground));
+  background: transparent;
+}
+
+.calendar-wrapper .fc .fc-daygrid-day-number {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  padding: 6px 8px;
+}
+
+.calendar-wrapper .fc .fc-daygrid-day.fc-day-today {
+  background: hsl(var(--primary) / 0.06);
+}
+
+.calendar-wrapper .fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 9999px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 4px;
+}
+
+.calendar-wrapper .fc .fc-daygrid-event {
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: none;
+  margin: 1px 4px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.calendar-wrapper .fc .fc-daygrid-event:hover {
+  opacity: 0.85;
+}
+
+.calendar-wrapper .fc .fc-timegrid-event {
+  border-radius: 6px;
+  padding: 4px 6px;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-wrapper .fc .fc-timegrid-slot {
+  height: 2.5rem;
+}
+
+.calendar-wrapper .fc .fc-timegrid-axis {
+  font-size: 0.7rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.calendar-wrapper .fc .fc-more-link {
+  font-size: 0.7rem;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.calendar-wrapper .fc .fc-scrollgrid {
+  border-radius: 8px;
+  overflow: hidden;
+  border-color: hsl(var(--border));
+}
+
+.calendar-wrapper .fc .fc-scrollgrid table {
+  border-radius: 8px;
+}
+
+.calendar-wrapper .fc .fc-daygrid-more-link {
+  color: hsl(var(--primary));
+}
+
+.calendar-wrapper .fc .fc-non-business {
+  background: hsl(var(--muted) / 0.3);
+}
+
+.calendar-wrapper .fc .fc-day-other .fc-daygrid-day-top {
+  opacity: 0.4;
+}
+
+.calendar-wrapper .fc .fc-button {
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 4px 12px;
+  box-shadow: none;
+  transition: all 0.15s;
+}
+
+.calendar-wrapper .fc .fc-button-primary:not(:disabled):active:focus,
+.calendar-wrapper .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+  box-shadow: none;
+}
+
+.calendar-wrapper .fc .fc-button:focus {
+  box-shadow: none;
+}
+
+.calendar-wrapper .fc .fc-button-primary:not(:disabled).fc-button-active {
+  background: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.calendar-wrapper .fc .fc-highlight {
+  background: hsl(var(--primary) / 0.08);
+}
+
+/* Dark mode overrides */
+.dark .calendar-wrapper {
+  --fc-neutral-bg-color: hsl(var(--card));
+  --fc-page-bg-color: hsl(var(--card));
+  --fc-list-event-hover-bg-color: hsl(var(--accent));
+}
+
+.dark .calendar-wrapper .fc .fc-daygrid-event {
+  backdrop-filter: brightness(0.8);
+}
+
+.dark .calendar-wrapper .fc .fc-timegrid-now-indicator-line {
+  border-color: hsl(var(--primary));
+}
+
+.dark .calendar-wrapper .fc .fc-timegrid-now-indicator-arrow {
+  border-color: hsl(var(--primary));
+  fill: hsl(var(--primary));
+}
+
+/* Event Category Specific Styles */
+.fc-event-assignment {
+  background-color: var(--fc-event-assignment-bg) !important;
+}
+
+.fc-event-study-session {
+  background-color: var(--fc-event-study-session-bg) !important;
+}
+
+.fc-event-exam {
+  background-color: var(--fc-event-exam-bg) !important;
+}
+
+.fc-event-meeting {
+  background-color: var(--fc-event-meeting-bg) !important;
+}
+
+.fc-event-personal {
+  background-color: var(--fc-event-personal-bg) !important;
+}
